@@ -6,7 +6,7 @@ RSpec.describe 'Merchants API', type: :request do
       describe 'All contacts belong to same user' do 
         let!(:contacts) { create_list(:contact, 3, user_id: 4) }
 
-        before { get '/api/v1/contacts?user_id=4' }
+        before { get '/api/v1/contacts/?user_id=4' }
 
         it 'returns contacts' do 
           expect(response).to be_successful
@@ -34,22 +34,33 @@ RSpec.describe 'Merchants API', type: :request do
       end 
     end 
 
-    describe 'user does not exist' do 
-      before { get '/api/v1/contacts?user_id=4' }
+    describe 'user has no contacts' do 
+      before { get '/api/v1/contacts?user_id=10' }
 
-      it 'returns status code 404' do 
-        expect(response).to have_http_status(404)
+      it 'returns status code 200' do 
+        expect(response).to have_http_status(200)
       end 
 
       it 'returns a not found message' do 
-        expect(response.body).to match(/Couldn't find User/)
+        expect(response.body).to match("{\"data\":[]}")
       end 
     end 
 
-    # describe 'Contacts belong to different users' do
-    #   let!(:contact1) { create(:contact, user_id: 1) }
-    #   let!(:contact2) { create(:contact, user_id: 1) }
-    #   let!(:contact1) { create(:contact, user_id: 2) }
-    # end 
+    describe 'Contacts belong to different users' do
+      let!(:contact1) { create(:contact, user_id: 1) }
+      let!(:contact2) { create(:contact, user_id: 1) }
+      let!(:contact1) { create(:contact, user_id: 2) }
+
+      before { get '/api/v1/contacts?user_id=2' }
+      
+      it 'only retruns the contacts of the specified user' do 
+        expect(response).to be_successful
+
+        contacts_list = JSON.parse(response.body, symbolize_names: :true)[:data]
+
+        expect(contacts_list).not_to be_empty
+        expect(contacts_list.count).to eq(1)
+      end 
+    end 
   end 
 end 
