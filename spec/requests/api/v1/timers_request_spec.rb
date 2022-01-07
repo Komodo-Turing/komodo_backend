@@ -91,4 +91,21 @@ RSpec.describe 'Timers API' do
       expect(timer[:data][:id]).to eq('1')
     end
   end
+
+  describe 'PATCH /api/v1/timers/:id' do
+    let!(:timer1) { create(:timer, user_id: 1, id: 1) }
+    
+    item_params = { name: "New Name" }
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+
+    before { patch '/api/v1/timers/1', headers: headers, params: JSON.generate(item_params) }
+    
+    it 'should update the timer' do
+      expect(response).to be_successful
+
+      timer1.reload
+      expect(timer1.name).to eq 'New Name'
+    end
+  end
 end 
