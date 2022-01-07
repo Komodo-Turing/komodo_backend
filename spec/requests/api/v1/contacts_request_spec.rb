@@ -83,9 +83,8 @@ RSpec.describe 'Merchants API', type: :request do
   end 
 
   describe 'POST /api/v1/contacts' do 
-    before { post "/api/v1/contacts/?name=John+Smith&phone_number=1112223333&user_id=5" }
-
     context 'when the request is valid' do 
+      before { post "/api/v1/contacts/?name=John+Smith&phone_number=1112223333&user_id=5" }
       it 'creates a contact' do 
         contact = JSON.parse(response.body, symbolize_names: :true)[:data]
 
@@ -97,6 +96,25 @@ RSpec.describe 'Merchants API', type: :request do
       it 'returns status code 200' do 
         expect(response).to have_http_status(200)
       end 
+    end 
+
+    context 'when the request is invalid' do 
+      before { post "/api/v1/contacts/?phone_number=1112223333&user_id=5" }
+      it 'returns status code 422' do 
+        expect(response).to have_http_status(422)
+      end 
+    end 
+  end 
+
+  describe 'DELETE /api/v1/contacts' do 
+    let!(:contacts) { create_list(:contact, 3) }
+    let!(:contact_id) { contacts.first.id }
+
+    before { delete "/api/v1/contacts/#{contact_id}" }
+
+    it 'successfully deletes the contact' do 
+      expect(response).to have_http_status(204)
+      expect(Contact.count).to eq(2)
     end 
   end 
 end 

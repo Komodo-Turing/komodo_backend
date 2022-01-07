@@ -4,7 +4,12 @@ class Api::V1::ContactsController < ApplicationController
   end 
 
   def create 
-    render json: ContactSerializer.new(Contact.create(user_id: params[:user_id], name: params[:name], phone_number: params[:phone_number]))
+    contact = Contact.new(user_id: params[:user_id], name: params[:name], phone_number: params[:phone_number])
+    if contact.save
+      render json: ContactSerializer.new(contact)
+    else
+      render json: {error: 'Creation failed, check that all parameters are valid', status: 422}, status: 422
+    end 
   end 
 
   def update 
@@ -14,5 +19,8 @@ class Api::V1::ContactsController < ApplicationController
   end 
 
   def destroy 
+    contact = Contact.find(params[:id])
+    contact.destroy
+    head :no_content
   end 
 end
