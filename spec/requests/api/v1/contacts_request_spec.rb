@@ -52,7 +52,7 @@ RSpec.describe 'Merchants API', type: :request do
       let!(:contact1) { create(:contact, user_id: 2) }
 
       before { get '/api/v1/contacts?user_id=2' }
-      
+
       it 'only retruns the contacts of the specified user' do 
         expect(response).to be_successful
 
@@ -60,6 +60,42 @@ RSpec.describe 'Merchants API', type: :request do
 
         expect(contacts_list).not_to be_empty
         expect(contacts_list.count).to eq(1)
+      end 
+    end 
+  end 
+
+  describe 'PUT /api/v1/contacts' do 
+    let!(:contacts) { create_list(:contact, 3) }
+    let!(:contact_id) { contacts.first.id }
+
+    before { patch "/api/v1/contacts/#{contact_id}?phone_number=1112223333" }
+
+    context 'when the record exists' do 
+      it 'updates the record' do 
+        expect(response.body).to be_empty
+        expect(Contact.find(contact_id).phone_number).to eq('1112223333')
+      end   
+
+      it 'returns status code 204' do 
+        expect(response).to have_http_status(204)
+      end 
+    end 
+  end 
+
+  describe 'POST /api/v1/contacts' do 
+    before { post "/api/v1/contacts/?name=John+Smith&phone_number=1112223333&user_id=5" }
+
+    context 'when the request is valid' do 
+      it 'creates a contact' do 
+        contact = JSON.parse(response.body, symbolize_names: :true)[:data]
+
+        expect(contact[:attributes][:user_id]).to eq(5)
+        expect(contact[:attributes][:name]).to eq('John Smith')
+        expect(contact[:attributes][:phone_number]).to eq('1112223333')
+      end 
+
+      it 'returns status code 200' do 
+        expect(response).to have_http_status(200)
       end 
     end 
   end 
