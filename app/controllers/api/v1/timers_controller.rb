@@ -11,9 +11,17 @@ class Api::V1::TimersController < ApplicationController
     render json: TimerSerializer.new(Timer.update(params[:id], timer_params))
   end
 
+  def create
+    render json: TimerSerializer.new(Timer.create!(timer_params))
+  end
+
+  def destroy
+    render json: TimerSerializer.new(Timer.destroy(params[:id]))
+  end
+
   private
 
   def timer_params
-    params.permit(:user_id, :name, :duration, :substance, :dosage, :entry_instructions, :notes)
+    params.require(:timer).permit(:user_id, :name, :duration, :substance, :dosage, :entry_instructions, :notes)
   end
 end
