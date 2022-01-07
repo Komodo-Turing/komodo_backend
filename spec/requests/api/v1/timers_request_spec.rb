@@ -74,5 +74,21 @@ RSpec.describe 'Timers API' do
         expect(timer_list.count).to eq(1)
       end 
     end 
-  end 
+  end
+
+  describe 'GET /api/v1/timers/:id' do
+    let!(:timer1) { create(:timer, user_id: 1, id: 1) }
+    let!(:timer2) { create(:timer, user_id: 1, id: 2) }
+
+    before { get '/api/v1/timers/1'}
+
+    it 'only returns the timer that is specified' do
+      expect(response).to be_successful
+
+      timer = JSON.parse(response.body, symbolize_names: :true)
+
+      expect(timer.count).to eq 1
+      expect(timer[:data][:id]).to eq('1')
+    end
+  end
 end 
