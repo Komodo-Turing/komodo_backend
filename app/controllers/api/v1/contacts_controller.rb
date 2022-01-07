@@ -4,7 +4,7 @@ class Api::V1::ContactsController < ApplicationController
   end 
 
   def create 
-    contact = Contact.new(user_id: params[:user_id], name: params[:name], phone_number: params[:phone_number])
+    contact = Contact.new(contacts_params)
     if contact.save
       render json: ContactSerializer.new(contact)
     else
@@ -14,7 +14,7 @@ class Api::V1::ContactsController < ApplicationController
 
   def update 
     contact = Contact.find(params[:id])
-    contact.update(phone_number: params[:phone_number])
+    contact.update(contacts_params)
     head :no_content
   end 
 
@@ -22,5 +22,11 @@ class Api::V1::ContactsController < ApplicationController
     contact = Contact.find(params[:id])
     contact.destroy
     head :no_content
+  end 
+
+  private 
+
+  def contacts_params
+    params.permit(:user_id, :name, :phone_number)
   end 
 end
