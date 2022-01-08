@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_05_224637) do
+ActiveRecord::Schema.define(version: 2022_01_08_024021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_timers", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.datetime "start_time"
+    t.integer "duration"
+    t.string "substance"
+    t.string "dosage"
+    t.text "entry_instructions"
+    t.text "notes"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.integer "user_id"
