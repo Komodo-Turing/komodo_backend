@@ -1,0 +1,3 @@
+class ActiveTimer < ApplicationRecord
+
+end
