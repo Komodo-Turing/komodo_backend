@@ -9,6 +9,7 @@ class CreateActiveTimers < ActiveRecord::Migration[5.2]
       t.string :dosage
       t.text :entry_instructions
       t.text :notes
+      t.string :status
     end
   end
 end

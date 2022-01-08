@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_01_08_024021) do
     t.string "dosage"
     t.text "entry_instructions"
     t.text "notes"
+    t.string "status"
   end
 
   create_table "contacts", force: :cascade do |t|
