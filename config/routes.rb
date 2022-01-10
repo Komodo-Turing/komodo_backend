@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
         resources :contacts, except: [:show]
         resources :timers
+        resources :active_timers, only: [:update, :create]
     end
   end
 end
