@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Timers API' do
-  describe 'GET /api/v1/timers' do 
-    context 'user exists' do 
-      describe 'All contacts belong to same user' do 
+  describe 'GET /api/v1/timers' do
+    context 'user exists' do
+      describe 'All contacts belong to same user' do
         let!(:timers) { create_list(:timer, 3, user_id: 1) }
 
         before { get '/api/v1/timers/?user_id=1' }
 
-        it 'returns all timers' do 
+        it 'returns all timers' do
           expect(response).to be_successful
 
           timer_list = JSON.parse(response.body, symbolize_names: :true)[:data]
@@ -16,7 +16,7 @@ RSpec.describe 'Timers API' do
           expect(timer_list).not_to be_empty
           expect(timer_list.count).to eq(3)
 
-          timer_list.each do |timer| 
+          timer_list.each do |timer|
             expect(timer[:attributes]).to have_key(:user_id)
             expect(timer[:attributes][:user_id]).to be_an(Integer)
 
@@ -37,26 +37,26 @@ RSpec.describe 'Timers API' do
 
             expect(timer[:attributes]).to have_key(:notes)
             expect(timer[:attributes][:notes]).to be_a(String)
-          end 
-        end 
+          end
+        end
 
-        it 'returns status code 200' do 
+        it 'returns status code 200' do
           expect(response).to have_http_status(200)
-        end 
-      end 
+        end
+      end
     end
 
-    describe 'user has no timers' do 
+    describe 'user has no timers' do
       before { get '/api/v1/timers?user_id=10' }
 
-      it 'returns status code 200' do 
+      it 'returns status code 200' do
         expect(response).to have_http_status(200)
-      end 
+      end
 
-      it 'returns a not found message' do 
+      it 'returns a not found message' do
         expect(response.body).to match("{\"data\":[]}")
-      end 
-    end 
+      end
+    end
 
     describe 'Contacts belong to different users' do
       let!(:timer1) { create(:timer, user_id: 1) }
@@ -64,16 +64,16 @@ RSpec.describe 'Timers API' do
       let!(:timer3) { create(:timer, user_id: 2) }
 
       before { get '/api/v1/timers?user_id=2' }
-      
-      it 'only retruns the contacts of the specified user' do 
+
+      it 'only retruns the contacts of the specified user' do
         expect(response).to be_successful
 
         timer_list = JSON.parse(response.body, symbolize_names: :true)[:data]
 
         expect(timer_list).not_to be_empty
         expect(timer_list.count).to eq(1)
-      end 
-    end 
+      end
+    end
   end
 
   describe 'GET /api/v1/timers/:id' do
@@ -94,13 +94,13 @@ RSpec.describe 'Timers API' do
 
   describe 'PATCH /api/v1/timers/:id' do
     let!(:timer1) { create(:timer, user_id: 1, id: 1) }
-    
+
     timer_params = { name: "New Name" }
     headers = {"CONTENT_TYPE" => "application/json"}
 
 
     before { patch '/api/v1/timers/1', headers: headers, params: JSON.generate(timer: timer_params) }
-    
+
     it 'should update the timer' do
       expect(response).to be_successful
 
@@ -111,7 +111,7 @@ RSpec.describe 'Timers API' do
 
   describe 'POST /api/v1/timers' do
     it 'should create a new Timer if the params are correct' do
-      timer_params = { 
+      timer_params = {
         user_id: 1,
         name: 'Timer',
         duration: 120,
@@ -120,7 +120,10 @@ RSpec.describe 'Timers API' do
         entry_instructions: 'The building code is 1234',
         notes: 'These are some notes'
       }
-  
+
+      #translated to query params format
+      # user_id=1&name=Timer&duration=120&substance=Drug&dosage=10oz&entry_instructions=1234&notes=note
+
       headers = {"CONTENT_TYPE" => "application/json"}
 
       post '/api/v1/timers', headers: headers, params: JSON.generate(timer: timer_params)
@@ -137,11 +140,11 @@ RSpec.describe 'Timers API' do
     end
 
     # it 'should not create a timer if the params are not valid' do
-    #   timer_params = { 
+    #   timer_params = {
     #     user_id: 1,
     #     name: 'Timer',
     #   }
-  
+
     #   headers = {"CONTENT_TYPE" => "application/json"}
 
     #   post '/api/v1/timers', headers: headers, params: JSON.generate(timer: timer_params)
@@ -161,4 +164,4 @@ RSpec.describe 'Timers API' do
       expect(Timer.all.count).to eq 0
     end
   end
-end 
+end

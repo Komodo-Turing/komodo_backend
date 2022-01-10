@@ -13,6 +13,8 @@ class Api::V1::TimersController < ApplicationController
 
   def create
     render json: TimerSerializer.new(Timer.create!(timer_params))
+    require "pry"; binding.pry
+    TwilioJob.set(wait: timer_duration.seconds).perform_later(ENV['MATT_PHONE_NUMBER'], 'Sent from the komodo_backend timer#create') #for testing i'm using seconds for the delay, but we can switch to minutes later; still need to abstract all of this and make the message dynamic.
   end
 
   def destroy
@@ -21,7 +23,11 @@ class Api::V1::TimersController < ApplicationController
 
   private
 
+  def timer_duration
+    timer_params[:duration].to_i
+  end
+
   def timer_params
-    params.require(:timer).permit(:user_id, :name, :duration, :substance, :dosage, :entry_instructions, :notes)
+    params.permit(:user_id, :name, :duration, :substance, :dosage, :entry_instructions, :notes)
   end
 end
