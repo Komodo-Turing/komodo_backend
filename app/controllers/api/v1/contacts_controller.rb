@@ -12,17 +12,19 @@ class Api::V1::ContactsController < ApplicationController
     end 
   end 
 
-  def update 
-    contact = Contact.find(params[:id])
-    contact.update(contacts_params)
-    head :no_content
-  end 
+  def update
+    # contact = Contact.find(params[:id])
+    # contact.update(contacts_params)
+    # head :no_content
+    render json: ContactSerializer.new(Contact.update(params[:id], contacts_params))
+  end
 
-  def destroy 
-    contact = Contact.find(params[:id])
-    contact.destroy
-    head :no_content
-  end 
+  def destroy
+    # contact = Contact.find(params[:id])
+    # contact.destroy
+    # head :no_content
+    render json: ContactSerializer.new(Contact.destroy(params[:id]))
+  end
 
   private 
 

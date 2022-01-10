@@ -64,7 +64,7 @@ RSpec.describe 'Merchants API', type: :request do
     end 
   end 
 
-  describe 'PUT /api/v1/contacts' do 
+  describe 'PATCH /api/v1/contacts' do 
     let!(:contacts) { create_list(:contact, 3) }
     let!(:contact_id) { contacts.first.id }
 
@@ -72,12 +72,12 @@ RSpec.describe 'Merchants API', type: :request do
 
     context 'when the record exists' do 
       it 'updates the record' do 
-        expect(response.body).to be_empty
+        expect(response.body).to_not be_empty
         expect(Contact.find(contact_id).phone_number).to eq('1112223333')
       end   
 
-      it 'returns status code 204' do 
-        expect(response).to have_http_status(204)
+      it 'returns status code 200' do 
+        expect(response).to have_http_status(200)
       end 
     end 
   end 
@@ -113,7 +113,7 @@ RSpec.describe 'Merchants API', type: :request do
     before { delete "/api/v1/contacts/#{contact_id}" }
 
     it 'successfully deletes the contact' do 
-      expect(response).to have_http_status(204)
+      expect(response).to have_http_status(200)
       expect(Contact.count).to eq(2)
     end 
   end 
