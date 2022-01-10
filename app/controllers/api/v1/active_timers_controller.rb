@@ -10,6 +10,6 @@ class Api::V1::ActiveTimersController < ApplicationController
   private
 
   def active_timer_params
-    params.require(:active_timer).permit(:user_id, :name, :start_time, :duration, :substance, :dosage, :entry_instructions, :notes, :status)
+    params.permit(:user_id, :name, :start_time, :duration, :substance, :dosage, :entry_instructions, :notes, :status)
   end
 end
