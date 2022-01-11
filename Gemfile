@@ -34,6 +34,9 @@ gem 'sidekiq'
 # Add messaging capability 
 gem 'twilio-ruby'
 
+# add json serializer 
+gem 'jsonapi-serializer'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
@@ -41,7 +44,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'shoulda'
-  gem 'jsonapi-serializer'
 end
 
 group :development do
