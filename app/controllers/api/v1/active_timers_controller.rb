@@ -5,7 +5,8 @@ class Api::V1::ActiveTimersController < ApplicationController
 
   def create
     new_timer = ActiveTimer.create!(active_timer_params)
-    TimerWorker.new.perform(new_timer.id, new_timer.user_id, new_timer.duration, new_timer.notes) #need to combine params into one body message
+    # facade call to location 
+    TimerWorker.perform_async(new_timer.id, new_timer.user_id, new_timer.duration, new_timer.notes) #need to combine params into one body message
     render json: ActiveTimerSerializer.new(new_timer)
   end
 

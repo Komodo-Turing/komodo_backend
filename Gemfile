@@ -42,7 +42,6 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
   gem 'jsonapi-serializer'
-  gem 'rspec-sidekiq'
 end
 
 group :development do
