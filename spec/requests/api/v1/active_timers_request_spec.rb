@@ -21,6 +21,7 @@ RSpec.describe 'Active Timer API' do
   describe 'POST /api/v1/timers' do
     it 'should create a new Timer if the params are correct' do
       active_timer_params = { 
+        id: 19,
         user_id: 1,
         name: 'Timer',
         duration: 120,

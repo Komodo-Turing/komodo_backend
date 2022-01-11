@@ -4,7 +4,9 @@ class Api::V1::ActiveTimersController < ApplicationController
   end
 
   def create
-    render json: ActiveTimerSerializer.new(ActiveTimer.create!(active_timer_params))
+    new_timer = ActiveTimer.create!(active_timer_params)
+    TimerWorker.new.perform(new_timer.id, new_timer.user_id, new_timer.duration, new_timer.notes) #need to combine params into one body message
+    render json: ActiveTimerSerializer.new(new_timer)
   end
 
   private
