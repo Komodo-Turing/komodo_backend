@@ -1,6 +1,6 @@
 require 'rails_helper' 
 
-RSpec.describe 'Merchants API', type: :request do 
+RSpec.describe 'Contacts API', type: :request do 
   describe 'GET /api/v1/contacts' do 
     context 'user exists' do 
       describe 'All contacts belong to same user' do 
@@ -62,7 +62,24 @@ RSpec.describe 'Merchants API', type: :request do
         expect(contacts_list.count).to eq(1)
       end 
     end 
-  end 
+  end
+
+  describe 'GET /api/v1/contacts/:id' do
+    let!(:contacts) { create_list(:contact, 3) }
+    let!(:contact_id) { contacts.first.id }
+
+    before { patch "/api/v1/contacts/#{contact_id}" }
+
+    
+    it 'returns the given contact' do
+      contact = JSON.parse(response.body, symbolize_names: :true)[:data]
+
+      expect(contact).to_not be_empty
+      expect(contact).to be_a Hash
+      expect(contact[:type]).to eq "contact"
+      expect(contact[:id]).to eq "#{contact_id}"
+    end
+  end
 
   describe 'PATCH /api/v1/contacts' do 
     let!(:contacts) { create_list(:contact, 3) }
@@ -80,7 +97,7 @@ RSpec.describe 'Merchants API', type: :request do
         expect(response).to have_http_status(200)
       end 
     end 
-  end 
+  end
 
   describe 'POST /api/v1/contacts' do 
     context 'when the request is valid' do 
