@@ -33,6 +33,6 @@ class Api::V1::ContactsController < ApplicationController
   private 
 
   def contacts_params
-    params.permit(:user_id, :name, :phone_number)
+    params.permit(:id, :user_id, :name, :phone_number)
   end 
 end
