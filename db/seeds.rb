@@ -17,3 +17,5 @@ Contact.create(user_id: 1, name: 'contact3', phone_number: '333-333-3333')
 Contact.create(user_id: 2, name: 'contact4', phone_number: '444-444-4444')
 Contact.create(user_id: 2, name: 'contact5', phone_number: '555-555-5555')
 Contact.create(user_id: 2, name: 'contact6', phone_number: '777-777-7777')
+
+Contact.create(user_id: 3, name: 'contact6', phone_number: '+19103980071')

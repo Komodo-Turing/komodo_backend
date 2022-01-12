@@ -29,6 +29,15 @@ gem 'jsonapi-serializer'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+# Add sidekiq to run background jobs 
+gem 'sidekiq'
+
+# Add messaging capability 
+gem 'twilio-ruby'
+
+# add json serializer 
+gem 'jsonapi-serializer'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
