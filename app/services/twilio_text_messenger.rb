@@ -3,27 +3,29 @@ class TwilioTextMessenger
 
   def initialize
     @client = Twilio::REST::Client.new account_sid, auth_token
-  end 
+  end
 
-  def send_text(contact_phone_number, message)
+  def send_text(contact_phone_number, message, map_image)
+    require "pry"; binding.pry
     @client.messages.create(
       to: contact_phone_number,
       from: phone_number,
-      body: message
+      body: message,
+      media_url: [map_image]
     )
-  end 
+  end
 
-  private 
+  private
 
   def account_sid
     ENV['twilio_sid']
-  end 
+  end
 
   def auth_token
     ENV['twilio_auth_token']
-  end 
+  end
 
-  def phone_number 
+  def phone_number
     ENV['twilio_phone_num']
-  end 
+  end
 end
