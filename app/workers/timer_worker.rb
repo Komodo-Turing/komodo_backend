@@ -7,16 +7,16 @@ class TimerWorker
       puts "00:00:#{'%02d' % i}"
       sleep 1
     end
-    checker(timer_id, user_id, message, map_image)
+    checker(timer_id, user_id, message) #map_image
   end
 
-  def checker(timer_id, user_id, message, map_image)
-    send_message(user_id, message, map_image) if ActiveTimer.find(timer_id).status == 'Active'
+  def checker(timer_id, user_id, message) #map_image
+    send_message(user_id, message) if ActiveTimer.find(timer_id).status == 'Active' #map_image
   end
 
-  def send_message(user_id, message, map_image)
+  def send_message(user_id, message) #map_image
     contact = Contact.find_by(user_id: user_id)
-    TwilioTextMessenger.new.send_text(contact.phone_number, message, map_image)
+    TwilioTextMessenger.new.send_text(contact.phone_number, message) #map_image
     ActiveTimer.find(timer_id).status = 'complete'
   end
 end
