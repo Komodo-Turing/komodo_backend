@@ -11,10 +11,10 @@ class TimerWorker
   end
 
   def checker(timer_id, user_id, body, image_url) 
-    send_message(user_id, body, image_url) if ActiveTimer.find(timer_id).status == 'Active' 
+    send_message(timer_id, user_id, body, image_url) if ActiveTimer.find(timer_id).status == 'Active' 
   end
 
-  def send_message(user_id, body, image_url) 
+  def send_message(timer_id, user_id, body, image_url) 
     contact = Contact.find_by(user_id: user_id)
     TwilioTextMessenger.new.send_text(contact.phone_number, body, image_url) 
     ActiveTimer.find(timer_id).status = 'complete'
