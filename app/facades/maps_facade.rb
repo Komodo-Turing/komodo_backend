@@ -1,8 +1,8 @@
-class MapsFacade 
-  class << self 
-    def get_street_view_image(address)
+class MapsFacade
+  class << self
+    def static_map(address)
       MapsService.get_image(address)
-      #get the image url string here 
-    end 
-  end 
-end 
+      require "pry"; binding.pry
+    end
+  end
+end
