@@ -7,7 +7,7 @@ class Api::V1::ActiveTimersController < ApplicationController
     new_timer = ActiveTimer.create!(active_timer_params)
     image_url = MapsFacade.static_map(new_timer.address)
     body = new_timer.create_body(params[:substance], params[:dosage], params[:entry_instructions], params[:notes], params[:address], image_url)
-    TimerWorker.perform_async(new_timer.id, new_timer.user_id, new_timer.duration, body) 
+    TimerWorker.perform_async(new_timer.id, new_timer.user_id, new_timer.duration, body, image_url) 
     render json: ActiveTimerSerializer.new(new_timer)
   end
 

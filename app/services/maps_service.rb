@@ -1,7 +1,7 @@
 class MapsService
   class << self
     def get_image(address)
-      response = conn.get("/geocoding/v1/address?location=1625 fenton st lakewood co")
+      response = conn.get("/geocoding/v1/address?location=#{address}")
       parse_data(response)
     end
 
