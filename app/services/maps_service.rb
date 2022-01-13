@@ -8,7 +8,7 @@ class MapsService
     private
 
     def conn
-      Faraday.new("https://maps.googleapis.com") do |x|
+      Faraday.new("https://www.mapquestapi.com") do |x|
         x.params['key'] = ENV['maps_api_key']
       end
     end
