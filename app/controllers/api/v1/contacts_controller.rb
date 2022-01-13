@@ -1,7 +1,11 @@
 class Api::V1::ContactsController < ApplicationController
   def index
     render json: ContactSerializer.new(Contact.where(user_id: params[:user_id]))
-  end 
+  end
+
+  def show
+    render json: ContactSerializer.new(Contact.find(params[:id]))
+  end
 
   def create 
     contact = Contact.new(contacts_params)
@@ -29,6 +33,6 @@ class Api::V1::ContactsController < ApplicationController
   private 
 
   def contacts_params
-    params.permit(:user_id, :name, :phone_number)
+    params.permit(:id, :user_id, :name, :phone_number)
   end 
 end
