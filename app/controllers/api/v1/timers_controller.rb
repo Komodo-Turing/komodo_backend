@@ -22,6 +22,6 @@ class Api::V1::TimersController < ApplicationController
   private
 
   def timer_params
-    params.require(:timer).permit(:user_id, :name, :duration, :substance, :dosage, :entry_instructions, :notes)
+    params.permit(:id, :user_id, :name, :duration, :substance, :dosage, :entry_instructions, :notes)
   end
 end

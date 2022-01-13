@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+ 
 RSpec.describe 'Merchants API', type: :request do
   describe 'GET /api/v1/contacts' do
     context 'user exists' do
