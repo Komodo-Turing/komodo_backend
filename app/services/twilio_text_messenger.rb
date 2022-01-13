@@ -6,7 +6,6 @@ class TwilioTextMessenger
   end
 
   def send_text(contact_phone_number, message, map_image)
-    require "pry"; binding.pry
     @client.messages.create(
       to: contact_phone_number,
       from: phone_number,
