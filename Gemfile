@@ -37,6 +37,12 @@ gem 'twilio-ruby'
 # add json serializer 
 gem 'jsonapi-serializer'
 
+# Add faraday for api calls
+gem 'faraday'
+
+# add html parser 
+gem 'nokogiri'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'

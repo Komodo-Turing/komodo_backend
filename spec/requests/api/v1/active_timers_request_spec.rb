@@ -30,7 +30,8 @@ RSpec.describe 'Active Timer API' do
         dosage: '10oz',
         entry_instructions: 'The building code is 1234',
         notes: 'These are some notes',
-        status: 'Active'
+        status: 'Active',
+        address: '4835 irving st, denver, co 80221'
       }
   
       headers = {"CONTENT_TYPE" => "application/json"}
