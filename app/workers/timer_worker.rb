@@ -2,7 +2,7 @@ class TimerWorker
   include Sidekiq::Worker
   sidekiq_options retry: false
 
-  def perform(timer_id, user_id, duration, message, map_image)
+  def perform(timer_id, user_id, duration, message) #map_image
     duration.downto(0) do |i|
       puts "00:00:#{'%02d' % i}"
       sleep 1
