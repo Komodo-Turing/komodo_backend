@@ -5,12 +5,11 @@ class TwilioTextMessenger
     @client = Twilio::REST::Client.new account_sid, auth_token
   end
 
-  def send_text(contact_phone_number, message, map_image)
+  def send_text(contact_phone_number, body)
     @client.messages.create(
       to: contact_phone_number,
       from: phone_number,
-      body: message,
-      media_url: [map_image]
+      body: body
     )
   end
 
