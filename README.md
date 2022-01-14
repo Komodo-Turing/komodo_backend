@@ -49,7 +49,9 @@ One of the most effective ways of preventing substance overuse is to make sure s
     - `rails db:seed`
 - Run your own development server:
   - `rails s`
-  - BackEnd local server address is:  "http://localhost:3000" 
+  - BackEnd local server address is:  "http://localhost:3000"
+  - Run the Redis server with redis-server
+  - Run Sidekiq with bundle exec sidekiq
 
 # External APIs
 This API consumes the following APIs:
