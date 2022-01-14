@@ -1,4 +1,4 @@
-#### make sure to add the api doc. https://docs.google.com/document/d/1YNHI5z8y6Pia2VBBVT7Z_d1RO0sc_jGLNiaRCrRwlXk/edit?usp=sharing
+#### make sure to add the api doc& setmore instruction. https://docs.google.com/document/d/1YNHI5z8y6Pia2VBBVT7Z_d1RO0sc_jGLNiaRCrRwlXk/edit?usp=sharing
 <img width="942" alt="Screen Shot 2022-01-13 at 5 07 48 PM" src="https://user-images.githubusercontent.com/86392608/149428499-1f8d611b-69fd-4581-9f0f-9faceb344ab2.png">
 
 
