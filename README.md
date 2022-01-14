@@ -1,4 +1,4 @@
-
+#### make sure to add the api doc& setmore instruction. https://docs.google.com/document/d/1YNHI5z8y6Pia2VBBVT7Z_d1RO0sc_jGLNiaRCrRwlXk/edit?usp=sharing
 <img width="942" alt="Screen Shot 2022-01-13 at 5 07 48 PM" src="https://user-images.githubusercontent.com/86392608/149428499-1f8d611b-69fd-4581-9f0f-9faceb344ab2.png">
 
 
@@ -25,7 +25,6 @@ One of the most effective ways of preventing substance overuse is to make sure s
 - [Local Setup](#local-setup)
 - [External APIs](#external-apis)
 - [Database Schema](#database-schema)
-- [Test Suite](#test-suite)
 - [Contributors](#contributors)
 
 # Local Setup. SOMEBODY DO THE ADDITIONAL THE BE INSTRUCTION
@@ -61,12 +60,6 @@ This API consumes the following APIs:
 
 <img width="1096" alt="Screen Shot 2022-01-13 at 5 00 21 PM" src="https://user-images.githubusercontent.com/86392608/149428762-bd0fd620-42f6-4c31-ac1f-e62c784de567.png">
 
-
-# Test Suite
-- Run with `bundle exec rspec`
-- All tests should be passing
-- XX% test coverage for the FrontEnd
-- XX% test coverage for the BackEnd
 
 # Contributors
 - Jacob Yarborough |  [Github](https://github.com/jacobyarborough)   |   [LinkedIn](https://www.linkedin.com/in/jacob-yarborough/)
