@@ -6,7 +6,7 @@
 One of the most effective ways of preventing substance overuse is to make sure someone stays with you while you use a substance. This, however, is not always an option for everybody. This Rails App ([FE deployed endpoint](https://komodo-frontend.herokuapp.com)) ([BE deployed endpoint](https://komodo-backend.herokuapp.com)) was created in hopes of mitigating this issue. It lets a client create emergency contacts and start a timer when they are about to use a substance. If the timer is not stopped before it runs out, it will text their contacts with the client's address, map and other information pre-created by the client.    
 
 #### What can I do on Komodo?
-  - Sign up and sign in using Google OAuth 2.0
+  - Sign up and sign in using [Google OAuth 2.0](https://console.cloud.google.com)
   - Create emergency contacts with their name and phone number
   - Create timers with information such as:
     - Duration in minutes (the only required information)
