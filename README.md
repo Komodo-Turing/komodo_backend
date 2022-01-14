@@ -1,4 +1,4 @@
-<img src="https://files.slack.com/files-pri/T029P2S9M-F02SPJL2VN2/komodo_logo.png" alt="logo" max-width="600"><br>
+
 <img width="942" alt="Screen Shot 2022-01-13 at 5 07 48 PM" src="https://user-images.githubusercontent.com/86392608/149428499-1f8d611b-69fd-4581-9f0f-9faceb344ab2.png">
 
 
@@ -24,6 +24,7 @@ One of the most effective ways of preventing substance overuse is to make sure s
 # Readme Content
 - [Local Setup](#local-setup)
 - [External APIs](#external-apis)
+- [Database Schema](#database-schema)
 - [Test Suite](#test-suite)
 - [Contributors](#contributors)
 
@@ -49,13 +50,17 @@ One of the most effective ways of preventing substance overuse is to make sure s
     - `rails db:seed`
 - Run your own development server:
   - `rails s`
-  - FrontEnd local server address is: "http://localhost:5000" 
   - BackEnd local server address is:  "http://localhost:3000" 
 
 # External APIs
 This API consumes the following APIs:
 - [Twilio](https://www.twilio.com/docs/sms/api) to send text messages
 - [MapQuest Geocoding API](https://developer.mapquest.com/documentation/geocoding-api/) to provide map image
+
+# Database Schema
+
+<img width="1096" alt="Screen Shot 2022-01-13 at 5 00 21 PM" src="https://user-images.githubusercontent.com/86392608/149428762-bd0fd620-42f6-4c31-ac1f-e62c784de567.png">
+
 
 # Test Suite
 - Run with `bundle exec rspec`
