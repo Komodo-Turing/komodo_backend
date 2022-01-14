@@ -11,6 +11,10 @@ class Api::V1::ActiveTimersController < ApplicationController
     render json: ActiveTimerSerializer.new(new_timer)
   end
 
+  def show 
+    render json: ActiveTimerSerializer.new(ActiveTimer.find(params[:id]))
+  end 
+
   private
 
   def active_timer_params
