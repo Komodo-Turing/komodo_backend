@@ -3,7 +3,7 @@ class TimerWorker
   sidekiq_options retry: false
 
   def perform(timer_id, user_id, duration, body, image_url)
-    duration.downto(0) do |i|
+    (duration * 60).downto(0) do |i|
       puts "00:00:#{'%02d' % i}"
       sleep 1
     end
