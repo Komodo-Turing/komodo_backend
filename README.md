@@ -1,5 +1,5 @@
 <img src="https://files.slack.com/files-pri/T029P2S9M-F02SPJL2VN2/komodo_logo.png" alt="logo" max-width="600"><br>
-<img width="1096" alt="Screen Shot 2022-01-13 at 5 00 21 PM" src="https://user-images.githubusercontent.com/86392608/149428346-a6bcfa8a-a2ea-4cbf-a825-ea1877923529.png">
+<img width="942" alt="Screen Shot 2022-01-13 at 5 07 48 PM" src="https://user-images.githubusercontent.com/86392608/149428499-1f8d611b-69fd-4581-9f0f-9faceb344ab2.png">
 
 
 ![rails-badge](https://img.shields.io/badge/Rails-5.2.6-informational?style=flat-square) ![ruby-badge](https://img.shields.io/badge/Ruby-2.7.2-informational?style=flat-square)
