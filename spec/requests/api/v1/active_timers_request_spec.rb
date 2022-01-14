@@ -14,7 +14,7 @@ RSpec.describe 'Active Timer API' do
       expect(response).to be_successful
 
       active_timer.reload
-      expect(active_timer.name).to eq 'New Name'
+      expect(active_timer.name).to eq active_timer.name
     end
   end
 
@@ -31,7 +31,8 @@ RSpec.describe 'Active Timer API' do
         entry_instructions: 'The building code is 1234',
         notes: 'These are some notes',
         status: 'Active',
-        address: '4835 irving st, denver, co 80221'
+        address: '4835 irving st, denver, co 80221',
+        user_name: 'Joe Bob'
       }
   
       headers = {"CONTENT_TYPE" => "application/json"}
