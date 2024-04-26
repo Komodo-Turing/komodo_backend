@@ -27,7 +27,7 @@ One of the most effective ways of preventing substance overuse is to make sure s
 - [Database Schema](#database-schema)
 - [Contributors](#contributors)
 
-# Local Setup. SOMEBODY DO THE ADDITIONAL THE BE INSTRUCTION
+# Local Setup.
 - Versions
   - Rails 5.2.6
   - Ruby 2.7.2
